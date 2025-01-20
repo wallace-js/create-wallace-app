@@ -18,6 +18,12 @@ function getValidAnswer(question, error, validate) {
   }
 }
 
+/**
+ * Asks a chain of questions, then calles the callback with the collected answers.
+ * 
+ * @param {Array} questions - array of objects to pass to getValidAnswer().
+ * @param {*} callback - callback to call once all questions are answered.
+ */
 function chainQuestions(questions, callback) {
   const answers = {};
   questions.forEach((question) => {

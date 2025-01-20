@@ -9,7 +9,7 @@
   "author": "Andrew Buchan",
   "license": "ISC",
   "description": "",
-  "bin": "./bin.cjs",
+  "bin": "./src/bin.cjs",
   "dependencies": {
     "is-valid-path": "^0.1.1",
     "readline-sync": "^1.4.10"
