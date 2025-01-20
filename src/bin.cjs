@@ -19,12 +19,12 @@ const questions = [
     error: "Invalid choice.",
     validate: (answer) =>  ["ts", "js"].includes(answer),
   },
-  // {
-  //   name: "name",
-  //   message: "Project name",
-  //   error: "Name may only contain letters, spaces, dashes or underscores.",
-  //   validate: (answer) => name_re.test(answer),
-  // },
+  {
+    name: "name",
+    message: "Project name",
+    error: "Name may only contain letters, spaces, dashes or underscores.",
+    validate: (answer) => name_re.test(answer),
+  },
 ];
 
 console.log(`

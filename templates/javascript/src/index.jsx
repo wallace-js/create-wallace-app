@@ -6,4 +6,4 @@ const Greeting = ({ msg, name }) => (
   </div>
 );
 
-mount("main", Greeting, { msg: "hello", from: "Wallace" });
+mount("main", Greeting, { msg: "hello", name: "Wallace" });
