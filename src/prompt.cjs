@@ -19,8 +19,8 @@ function getValidAnswer(question, error, validate) {
 }
 
 /**
- * Asks a chain of questions, then calles the callback with the collected answers.
- * 
+ * Asks a chain of questions, then calls the callback with the collected answers.
+ *
  * @param {Array} questions - array of objects to pass to getValidAnswer().
  * @param {*} callback - callback to call once all questions are answered.
  */
@@ -30,10 +30,10 @@ function chainQuestions(questions, callback) {
     answers[question.name] = getValidAnswer(
       question.message,
       question.error,
-      question.validate,
+      question.validate
     );
   });
   callback(answers);
 }
 
-module.exports = chainQuestions
+module.exports = chainQuestions;

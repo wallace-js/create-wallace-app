@@ -4,12 +4,12 @@ const isValidPath = require("is-valid-path");
 const chainQuestions = require("./prompt.cjs");
 const generateProject = require("./generate.cjs");
 
-const name_re = /^[\w\d\s-]+$/
+const name_re = /^[\w\d\s-]+$/;
 
 const questions = [
   {
     name: "dir",
-    message: "Where to create the project? (enter '.' for current dir)",
+    message: "Where should I create the project? (enter '.' for current dir)",
     error: "Directory must be a valid path.",
     validate: (answer) => isValidPath(answer),
   },
@@ -17,7 +17,7 @@ const questions = [
     name: "language",
     message: "TypeScript or JavaScript? (enter 'js' or 'ts')",
     error: "Invalid choice.",
-    validate: (answer) =>  ["ts", "js"].includes(answer),
+    validate: (answer) => ["ts", "js"].includes(answer),
   },
   {
     name: "name",
