@@ -22,15 +22,13 @@ const getFilesInDir = (dir) =>
     .map((file) => path.resolve(dir, file))
     .filter((entry) => fs.lstatSync(entry).isFile());
 
-function generateProject(answers) {
+function generateProject(answers, destDir) {
   const { dir, name, language } = answers;
-  const destDir = path.resolve(dir);
   const languageSelection = languageMap[language];
   if (!languageSelection) {
     console.log(`Invalid language selection: ${answers.language}`);
     return;
   }
-  console.log(`Creating project in ${destDir}`);
   const baseTemplate = path.resolve(__dirname, "../templates/base");
   const languageTemplate = path.resolve(
     __dirname,
@@ -44,7 +42,7 @@ function generateProject(answers) {
   renameInFiles(files, "__ENTRY__", languageSelection.entry);
   process.chdir(destDir);
   childProcess.execSync("npm install", { stdio: "inherit" });
-  childProcess.execSync("npm update", { stdio: "inherit" });
+  childProcess.execSync("npm i wallace -D", { stdio: "inherit" });
   console.log(`Project created in ${destDir}. See README.md for next steps.`);
 }
 

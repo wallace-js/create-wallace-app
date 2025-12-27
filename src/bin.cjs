@@ -1,7 +1,8 @@
 #!/usr/bin/env node
+const path = require("path");
 
 const isValidPath = require("is-valid-path");
-const chainQuestions = require("./prompt.cjs");
+const { getValidAnswer, chainQuestions } = require("./prompt.cjs");
 const generateProject = require("./generate.cjs");
 
 const name_re = /^[\w\d\s-]+$/;
@@ -28,11 +29,22 @@ const questions = [
 ];
 
 console.log(`
-  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-  wwwwwwwwwwwwwwwwwwwwwwwww  CREATE WALLACE APP  wwwwwwwwwwwwwwwwwwwwwwwwww
-  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+  -------------------------------------------------------------------------
+  -------------------------  CREATE WALLACE APP  --------------------------
+  -------------------------------------------------------------------------
 `);
 
 chainQuestions(questions, (answers) => {
-  generateProject(answers);
+  const destDir = path.resolve(answers.dir);
+  const details = [
+    `Name: ${answers.name}`,
+    `Language: ${answers.language}`,
+    `Directory: ${destDir}`,
+  ].join("\n   ");
+  getValidAnswer(
+    `Creating project:\n\n   ${details}\n\nType "ok" to proceed`,
+    "Invalid answer.",
+    (answer) => answer.toLowerCase() === "ok"
+  );
+  generateProject(answers, destDir);
 });

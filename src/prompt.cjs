@@ -36,4 +36,4 @@ function chainQuestions(questions, callback) {
   callback(answers);
 }
 
-module.exports = chainQuestions;
+module.exports = { getValidAnswer, chainQuestions };
